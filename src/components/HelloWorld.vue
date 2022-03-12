@@ -1,40 +1,32 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref, reactive, computed } from 'vue'
 
-defineProps({
-  msg: String
+const props = defineProps({
+    msg: {
+        type: String,
+        default: 'Welcome to Your Vue.js App'
+    }
 })
 
-const count = ref(0)
+interface Book {
+    title: string
+    year?: number
+}
+const book: Book = reactive({ title: 'Vue 3 Guide' })
+const count = ref(5)
+const countDouble = computed<number>(() => count.value * 2)
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
-  <p>
-    Recommended IDE setup:
-    <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-  </p>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">
-      Vite Documentation
-    </a>
-    |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <button type="button" @click="count++">count is: {{ count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+    <h1>{{ props.msg }}</h1>
+    <h1>{{ count }}</h1>
+    <h1>{{ countDouble }}</h1>
+    <input type="text" v-model="book.title" />
+    <h1>{{ book }}</h1>
 </template>
 
 <style scoped>
 a {
-  color: #42b983;
+    color: #42b983;
 }
 </style>

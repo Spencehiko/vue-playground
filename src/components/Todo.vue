@@ -11,7 +11,6 @@ const newTodo = ref('');
 
 <template>
     <div id="todo">
-        {{ allTodos }}
         <input v-model="newTodo" @keyup.enter="addTodo(newTodo)" placeholder="What needs to be done?" />
         <ul>
             <li v-for="todo in activeTodos" :key="todo.id">

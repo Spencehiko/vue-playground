@@ -12,9 +12,8 @@ export const useTodo = defineStore('useTodo', {
     }),
     actions: {
         addTodo(title: string) {
-            console.log('addTodo', title);
             this.todos.push({
-                id: this.todos.length++,
+                id: this.todos.length,
                 title,
                 completed: false,
             });
@@ -37,4 +36,5 @@ export const useTodo = defineStore('useTodo', {
             return this.todos.filter((todo: TodoItem) => todo.completed);
         },
     },
+    persist: true,
 });

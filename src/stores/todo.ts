@@ -29,9 +29,6 @@ export const useTodo = defineStore('useTodo', {
         allTodos(): TodoItem[] {
             return this.todos;
         },
-        activeTodos(): TodoItem[] {
-            return this.todos.filter((todo: TodoItem) => !todo.completed);
-        },
         completedTodos(): TodoItem[] {
             return this.todos.filter((todo: TodoItem) => todo.completed);
         },

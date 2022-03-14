@@ -4,13 +4,14 @@ import { storeToRefs } from 'pinia'
 import { useTodo } from '../stores/todo'
 
 const store = useTodo();
-const { allTodos, activeTodos, completedTodos } = storeToRefs(store);
+const { allTodos, completedTodos } = storeToRefs(store);
 const { addTodo, removeTodo, clearCompleted } = store;
 const newTodo = ref('');
 </script>
 
 <template>
     <div id="todo">
+        <h3 class="mt-5">TODO LIST</h3>
         <input
             v-model="newTodo"
             @keyup.enter="
@@ -52,40 +53,104 @@ const newTodo = ref('');
                     w-1/2
                     text-gray-900
                 "
+                v-if="allTodos.length > 0"
             >
                 <li
-                    v-for="todo in activeTodos"
+                    v-for="todo in allTodos"
                     :key="todo.id"
                     class="px-10 py-5 border-b border-gray-200 w-full flex"
                 >
+                    <div
+                        class="
+                            flex
+                            items-center
+                            justify-center
+                            w-16
+                            my-auto
+                            mr-10
+                        "
+                    >
+                        <label
+                            :id="'completedToggle' + todo.id"
+                            class="flex items-center cursor-pointer"
+                        >
+                            <div class="relative">
+                                <input
+                                    type="checkbox"
+                                    :id="'completedToggle' + todo.id"
+                                    class="sr-only"
+                                    v-model="todo.completed"
+                                />
+                                <div
+                                    class="
+                                        block
+                                        bg-red-700
+                                        w-14
+                                        h-8
+                                        rounded-full
+                                    "
+                                    :class="{
+                                        'translate-x-full': todo.completed,
+                                        'bg-green-700': todo.completed,
+                                    }"
+                                ></div>
+                                <div
+                                    class="
+                                        dot
+                                        absolute
+                                        left-1
+                                        top-1
+                                        bg-white
+                                        w-6
+                                        h-6
+                                        rounded-full
+                                        transition
+                                        transform
+                                        duration-300
+                                    "
+                                    :class="{
+                                        'translate-x-full': todo.completed,
+                                    }"
+                                ></div>
+                            </div>
+                        </label>
+                    </div>
                     <span v-text="todo.title" class="my-auto"></span>
                     <button
                         @click="removeTodo(todo.id)"
                         class="
                             ml-auto
                             p-2
-                            text-right 
-                            border-l-fuchsia-800 border-2
+                            text-right
+                            border-2
                             rounded-lg
                             duration-300
-                            hover:border-white
-                            hover:bg-red-400
-                            hover:text-white
+                            hover:border-white hover:bg-red-700 hover:text-white
                         "
                     >
                         X
                     </button>
                 </li>
             </ul>
-            <p v-if="completedTodos.length">
-                <button @click="clearCompleted">Clear completed</button>
+            <p v-if="allTodos.length === 0" class="mt-10 italic">
+                ~ There is no todos yet ~
             </p>
         </div>
+        <button
+            v-if="completedTodos.length"
+            class="
+                mt-5
+                border
+                p-2
+                border-green-700
+                rounded-full
+                bg-green-700
+                text-white
+                hover:bg-white hover:text-green-700
+                duration-300
+            "
+        >
+            <button @click="clearCompleted">Clear completed</button>
+        </button>
     </div>
 </template>
-
-<style scoped>
-a {
-    color: #42b983;
-}
-</style>

@@ -1,9 +1,11 @@
 <script setup lang='ts'>
-import Todo from './components/Todo.vue'
+import Header from './components/Header.vue';
 </script>
 
 <template>
-    <Todo/>
+    <router-link to="/">Home </router-link>|
+    <router-link to="/todo">Todo</router-link>
+    <router-view/>
 </template>
 
 <style>

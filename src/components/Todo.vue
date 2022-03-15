@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
+import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTodo } from '../stores/todo'
 
@@ -10,7 +10,7 @@ const newTodo = ref('');
 </script>
 
 <template>
-    <div id="todo">
+    <div id="todo" class="bg-gray-300 py-10">
         <h3 class="mt-5">TODO LIST</h3>
         <input
             v-model="newTodo"
@@ -49,7 +49,7 @@ const newTodo = ref('');
                     mt-10
                     bg-white
                     rounded-lg
-                    border border-gray-200
+                    border border-gray-300
                     w-1/2
                     text-gray-900
                 "
@@ -58,7 +58,8 @@ const newTodo = ref('');
                 <li
                     v-for="todo in allTodos"
                     :key="todo.id"
-                    class="px-10 py-5 border-b border-gray-200 w-full flex"
+                    class="px-10 py-5 border-gray-300 w-full flex"
+                    :class="{ 'border-b': todo.id < allTodos.length - 1 }"
                 >
                     <div
                         class="
@@ -115,7 +116,7 @@ const newTodo = ref('');
                             </div>
                         </label>
                     </div>
-                    <span v-text="todo.title" class="my-auto"></span>
+                    <span v-text="todo.title" class="my-auto" />
                     <button
                         @click="removeTodo(todo.id)"
                         class="
@@ -123,6 +124,7 @@ const newTodo = ref('');
                             p-2
                             text-right
                             border-2
+                            border-gray-300
                             rounded-lg
                             duration-300
                             hover:border-white hover:bg-red-700 hover:text-white
@@ -141,7 +143,7 @@ const newTodo = ref('');
             class="
                 mt-5
                 border
-                p-2
+                p-3
                 border-green-700
                 rounded-full
                 bg-green-700
@@ -149,8 +151,9 @@ const newTodo = ref('');
                 hover:bg-white hover:text-green-700
                 duration-300
             "
+            @click="clearCompleted"
         >
-            <button @click="clearCompleted">Clear completed</button>
+            Clear Completed
         </button>
     </div>
 </template>

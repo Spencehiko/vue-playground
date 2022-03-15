@@ -1,10 +1,10 @@
 <script setup lang='ts'>
-import Header from './components/Header.vue';
 </script>
 
 <template>
     <router-link to="/">Home </router-link>|
-    <router-link to="/todo">Todo</router-link>
+    <router-link to="/todo">Todo </router-link>|
+    <router-link to="/shopping">Shopping</router-link>
     <router-view/>
 </template>
 
@@ -15,5 +15,6 @@ import Header from './components/Header.vue';
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    height: 100vh;
 }
 </style>

@@ -10,7 +10,7 @@ const newTodo = ref('');
 </script>
 
 <template>
-    <div id="todo" class="bg-gray-300 py-10">
+    <div id="todo" class="bg-gray-300 py-10 overflow-auto max-h-100-30px">
         <h3 class="mt-5">TODO LIST</h3>
         <input
             v-model="newTodo"
@@ -91,7 +91,6 @@ const newTodo = ref('');
                                         rounded-full
                                     "
                                     :class="{
-                                        'translate-x-full': todo.completed,
                                         'bg-green-700': todo.completed,
                                     }"
                                 ></div>

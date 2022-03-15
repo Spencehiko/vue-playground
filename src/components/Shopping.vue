@@ -87,16 +87,6 @@ const newItem = ref('');
                             +
                         </button>
                     </div>
-                    <div
-                        class="
-                            flex
-                            items-center
-                            justify-center
-                            w-16
-                            my-auto
-                            mr-10
-                        "
-                    ></div>
                     <span v-text="item.title" class="my-auto"></span>
                     <button
                         @click="removeItem(item.id)"

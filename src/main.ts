@@ -4,7 +4,6 @@ import { createPinia } from 'pinia';
 import { router } from './router.ts';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import './assets/styles/index.css';
-import alertify from 'alertifyjs';
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)

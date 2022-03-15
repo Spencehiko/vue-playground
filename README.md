@@ -1,7 +1,16 @@
-# Vue 3 + Vite
+# Vue Playground
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Hi! In this project I try to develop simple apps with **Vue, Typescript, Pinia, Tailwind CSS, Vite** to learn and improve myself.
 
-## Recommended IDE Setup
+If you want to try it out you can simply click **Code > Copy Icon** and go to your Terminal/Cmd etc.
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+    git clone THIS_REPOSITORY_LINK
+
+After cloning is finished, you **must** install the npm in order to run.
+
+    npm install
+    
+Then, you are ready to give it a shot! Just type
+
+    npm run serve
+and you will see the project in your browser!

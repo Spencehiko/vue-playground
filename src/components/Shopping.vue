@@ -70,11 +70,22 @@ const newItem = ref('');
                             mr-10
                         "
                     >
-                        <button @click="decrementItem(item.id)">-</button>
+                        <button
+                            @click="decrementItem(item.id)"
+                            class="px-2 text-right border-2 border-gray-300"
+                        >
+                            -
+                        </button>
                         <label
                             v-text="item.count"
+                            class="p-2 text-right"
                         />
-                        <button @click="incrementItem(item.id)">+</button>
+                        <button
+                            @click="incrementItem(item.id)"
+                            class="px-2 text-right border-2 border-gray-300"
+                        >
+                            +
+                        </button>
                     </div>
                     <div
                         class="

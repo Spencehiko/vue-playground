@@ -34,7 +34,9 @@ export const useShopping = defineStore('useShopping', {
             const item = this.items.find((item: ShoppingItem) => item.id === id);
             if (item) {
                 if(item.count === 1) {
-                    this.removeItem(id);
+                    if(confirm("Are you sure to delete this item?")) {
+                        this.removeItem(id);
+                    }
                 } else {
                     item.count--;
                 }

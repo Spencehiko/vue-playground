@@ -93,6 +93,7 @@ function convertToTime(publishedAt: string) {
                             v-text="item.title"
                             class="my-auto text-left font-semibold"
                         ></span>
+                        <span v-text="item.content.split('[')[0]" class="mt-4"></span>
                     </div>
                 </a>
             </div>

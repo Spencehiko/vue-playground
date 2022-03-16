@@ -10,7 +10,7 @@ const newItem = ref('');
 </script>
 <template>
     <div id="shopping" class="bg-green-100 py-10 overflow-auto max-h-100-30px">
-        <h3 class="mt-5">SHOPPING LIST</h3>
+        <h3 class="mt-5 text-center">SHOPPING LIST</h3>
         <input
             v-model="newItem"
             @keyup.enter="

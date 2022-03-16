@@ -2,10 +2,13 @@
 </script>
 
 <template>
-    <router-link to="/">Home </router-link>|
-    <router-link to="/todo">Todo </router-link>|
-    <router-link to="/shopping">Shopping</router-link>
-    <router-view/>
+    <div class="text-center">
+        <router-link to="/">Home </router-link>|
+        <router-link to="/todo">Todo </router-link>|
+        <router-link to="/shopping">Shopping </router-link>|
+        <router-link to="/news">News </router-link>
+    </div>
+    <router-view />
 </template>
 
 <style>
@@ -13,7 +16,6 @@
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     color: #2c3e50;
     height: 100vh;
 }

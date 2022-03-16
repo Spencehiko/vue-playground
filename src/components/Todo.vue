@@ -11,7 +11,7 @@ const newTodo = ref('');
 
 <template>
     <div id="todo" class="bg-gray-300 py-10 overflow-auto max-h-100-30px">
-        <h3 class="mt-5">TODO LIST</h3>
+        <h3 class="mt-5 text-center">TODO LIST</h3>
         <input
             v-model="newTodo"
             @keyup.enter="

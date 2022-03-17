@@ -1,6 +1,6 @@
 # Vue Playground
 
-Hi! In this project I try to develop simple apps with **Vue, Typescript, Pinia, Tailwind CSS, Vite** to learn and improve myself.
+Hi! In this project I try to develop simple apps with **Vue, Typescript, Pinia, Tailwind CSS, Vite** to learn and improve myself. I developed simple apps such as **Todo App, Shopping List App, News App**.
 
 If you want to try it out you can simply click **Code > Copy Icon** and go to your Terminal/Cmd etc.
 

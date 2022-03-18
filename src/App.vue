@@ -6,7 +6,8 @@
         <router-link to="/">Home </router-link>|
         <router-link to="/todo">Todo </router-link>|
         <router-link to="/shopping">Shopping </router-link>|
-        <router-link to="/news">News </router-link>
+        <router-link to="/news">News </router-link>|
+        <router-link to="/calculator">Calculator </router-link>
     </div>
     <router-view />
 </template>

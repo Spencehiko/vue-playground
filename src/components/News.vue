@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { ref, reactive, computed } from 'vue';
+import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useNews } from '../stores/news';
 

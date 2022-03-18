@@ -9,8 +9,11 @@ const { addItem, removeItem, clearItems, incrementItem, decrementItem } = store;
 const newItem = ref('');
 </script>
 <template>
-    <div id="shopping" class="bg-green-100 py-10 overflow-auto max-h-100-30px">
-        <h3 class="mt-5 text-center">SHOPPING LIST</h3>
+    <div
+        id="shopping"
+        class="bg-green-100 py-10 overflow-auto max-h-100-30px text-center"
+    >
+        <h3 class="mt-5">SHOPPING LIST</h3>
         <input
             v-model="newItem"
             @keyup.enter="
@@ -26,7 +29,6 @@ const newItem = ref('');
                 w-3/4
                 px-3
                 py-1.5
-                text-center
                 font-normal
                 text-gray-700
                 bg-white bg-clip-padding
@@ -76,10 +78,7 @@ const newItem = ref('');
                         >
                             -
                         </button>
-                        <label
-                            v-text="item.count"
-                            class="p-2 text-right"
-                        />
+                        <label v-text="item.count" class="p-2 text-right" />
                         <button
                             @click="incrementItem(item.id)"
                             class="px-2 text-right border-2 border-gray-300"

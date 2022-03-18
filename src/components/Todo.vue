@@ -10,8 +10,11 @@ const newTodo = ref('');
 </script>
 
 <template>
-    <div id="todo" class="bg-gray-300 py-10 overflow-auto max-h-100-30px">
-        <h3 class="mt-5 text-center">TODO LIST</h3>
+    <div
+        id="todo"
+        class="bg-gray-300 py-10 overflow-auto max-h-100-30px text-center"
+    >
+        <h3 class="mt-5">TODO LIST</h3>
         <input
             v-model="newTodo"
             @keyup.enter="
@@ -27,8 +30,6 @@ const newTodo = ref('');
                 w-3/4
                 px-3
                 py-1.5
-                text-center
-                font-normal
                 text-gray-700
                 bg-white bg-clip-padding
                 border border-solid border-gray-300
@@ -121,9 +122,7 @@ const newTodo = ref('');
                         class="
                             ml-auto
                             p-2
-                            text-right
-                            border-2
-                            border-gray-300
+                            border-2 border-gray-300
                             rounded-lg
                             duration-300
                             hover:border-white hover:bg-red-700 hover:text-white

@@ -25,12 +25,15 @@ function convertToTime(publishedAt: string) {
 </script>
 
 <template>
-    <div id="news" class="bg-blue-200 py-10 overflow-auto max-h-100-30px">
-        <h3 class="mt-5 text-center">NEWS</h3>
+    <div
+        id="news"
+        class="bg-blue-200 py-10 overflow-auto max-h-100-30px text-center"
+    >
+        <h3 class="mt-5">NEWS</h3>
         <input
             v-model="query"
             @keyup.enter="getNews(query)"
-            placeholder="Are you looking for news? Write and press enter"
+            placeholder="Are you looking for news? Write the topic and press enter"
             type="text"
             maxlength="50"
             class="
@@ -39,7 +42,6 @@ function convertToTime(publishedAt: string) {
                 w-3/4
                 px-3
                 py-1.5
-                text-center
                 font-normal
                 text-gray-700
                 bg-white bg-clip-padding
@@ -88,12 +90,18 @@ function convertToTime(publishedAt: string) {
                         :src="item.urlToImage"
                     />
                     <div class="content px-1 py-2 flex flex-col">
-                        <span class="my-auto text-left text-sm" v-text="convertToTime(item.publishedAt)"></span>
+                        <span
+                            class="my-auto text-left text-sm"
+                            v-text="convertToTime(item.publishedAt)"
+                        ></span>
                         <span
                             v-text="item.title"
                             class="my-auto text-left font-semibold"
                         ></span>
-                        <span v-text="item.content.split('[')[0]" class="mt-4"></span>
+                        <span
+                            v-text="item.content.split('[')[0]"
+                            class="mt-4 text-left"
+                        ></span>
                     </div>
                 </a>
             </div>

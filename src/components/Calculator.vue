@@ -5,14 +5,42 @@ import { useCalculator } from '../stores/calculator'
 
 const store = useCalculator();
 const { ans } = storeToRefs(store);
-const { calculate, clear, add } = store;
+const { calculate, addToNumber } = store;
 const newTodo = ref('');
-const buttons = ['C', 'x²', '√', '1/x', 7, 8, 9, '/', 4, 5, 6, '*', 1, 2, 3, '-', 0, '.', '+', '='];
+const buttons = ['C', 'π', '%', '⌫', '1/x', 'x²', '√x', '÷', 7, 8, 9, 'x', 4, 5, 6, '-', 1, 2, 3, '+', '+/-', 0, '.', '='];
 const handleClick = (button: string | number) => {
-    if (button === '=') {
-        calculate();
-    } else if (button === 'C') {
-        clear();
+    if (typeof button === 'number') {
+        addToNumber(button);
+    } else {
+        if(button === 'C') {
+            ans.value = 0;
+        } else if (button === 'π') {
+            ans.value = 3.142;
+        } else if (button === '%') {
+            ans.value = ans.value / 100;
+        } else if (button === '⌫') {
+            ans.value = parseInt(ans.value.toString().slice(0, -1));
+        } else if (button === '1/x') {
+            ans.value = 1 / ans.value;
+        } else if (button === 'x²') {
+            ans.value = ans.value * ans.value;
+        } else if (button === '√x') {
+            ans.value = Math.sqrt(ans.value);
+        } else if (button === '÷') {
+            ans.value = ans.value / ans.value;
+        } else if (button === 'x') {
+            ans.value = ans.value * ans.value;
+        } else if (button === '-') {
+            ans.value = ans.value - ans.value;
+        } else if (button === '+') {
+            ans.value = ans.value + ans.value;
+        } else if (button === '+/-') {
+            ans.value = -ans.value;
+        } else if (button === '=') {
+            calculate();
+        } else if (button === '. ') {
+            ans.value = ans.value + '.';
+        }
     }
 };
 </script>
@@ -20,11 +48,30 @@ const handleClick = (button: string | number) => {
 <template>
     <div
         id="calculator"
-        class="bg-purple-300 py-10 overflow-auto max-h-100-30px text-center"
+        class="
+            bg-purple-300
+            py-10
+            overflow-auto
+            max-h-100-30px
+            text-center
+            my-auto
+        "
     >
         <h3 class="my-5">CALCULATOR</h3>
-        <div class="w-3/4 bg-black p-6 mx-auto rounded-lg text-4xl">
-            <div class="bg-green-600 w-full mb-5 text-right p-3 text-black font-mono">{{ ans }}</div>
+        <div class="w-3/5 bg-black p-6 mx-auto rounded-lg text-4xl">
+            <div
+                class="
+                    bg-green-600
+                    w-full
+                    mb-5
+                    text-right
+                    p-3
+                    text-black
+                    font-mono
+                "
+            >
+                {{ ans.toLocaleString('en-US', {maximumFractionDigits:3}) }}
+            </div>
             <div class="grid grid-cols-4 gap-4">
                 <button
                     class="
@@ -35,12 +82,21 @@ const handleClick = (button: string | number) => {
                         px-4
                         rounded
                         w-full
-                        focus:outline-none focus:bg-gray-200 focus:text-gray-900
                         hover:bg-gray-200 hover:text-gray-900
                     "
                     :class="{
+                        'bg-gray-500':
+                            ((index + 1) % 4 === 0 || index < 7) &&
+                            button !== '=' &&
+                            button !== 'C',
+                        'hover:bg-gray-400':
+                            ((index + 1) % 4 === 0 || index < 7) &&
+                            button !== '=' &&
+                            button !== 'C',
                         'bg-red-500': button === 'C',
+                        'hover:bg-red-400': button === 'C',
                         'bg-yellow-600': button === '=',
+                        'hover:bg-yellow-500': button === '=',
                     }"
                     v-for="(button, index) in buttons"
                     :key="index"

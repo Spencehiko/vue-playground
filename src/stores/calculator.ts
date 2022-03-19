@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import alertify from 'alertifyjs';
 
 export const useCalculator = defineStore('useCalculator', {
     state: () => ({
@@ -6,23 +7,16 @@ export const useCalculator = defineStore('useCalculator', {
     }),
     actions: {
         calculate() {
-            this.ans = 10;
-        },  
-        clear() {
-            this.ans = 0;
+            console.log('calculate???');
         },
-        add(num: number) {
-            this.ans += num;
+        addToNumber(number: number | string) {
+            if(this.ans.toString().length > 15) {
+                alertify.error('You reached maximum length', 2);
+                return;
+            }
+            console.log(number);
+            this.ans = parseInt(((this.ans || '').toString() + number).toString());
         },
-        sub(num: number) {
-            this.ans -= num;
-        },
-        mul(num: number) {
-            this.ans *= num;
-        },
-        div(num: number) {
-            this.ans /= num;
-        },    
     },
     persist: false,
 });

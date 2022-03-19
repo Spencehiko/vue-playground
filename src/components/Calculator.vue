@@ -12,34 +12,35 @@ const handleClick = (button: string | number) => {
     if (typeof button === 'number') {
         addToNumber(button);
     } else {
-        if(button === 'C') {
+        if (button === 'C') {
             ans.value = 0;
         } else if (button === 'π') {
             ans.value = 3.142;
         } else if (button === '%') {
-            ans.value = ans.value / 100;
+            ans.value = parseFloat((ans.value / 100).toFixed(3));
         } else if (button === '⌫') {
-            ans.value = parseInt(ans.value.toString().slice(0, -1));
+            console.log(ans.value.toString());
+            ans.value = parseFloat(ans.value.toString().slice(0, -1));
         } else if (button === '1/x') {
-            ans.value = 1 / ans.value;
+            ans.value = parseFloat((1 / ans.value).toFixed(3));
         } else if (button === 'x²') {
             ans.value = ans.value * ans.value;
         } else if (button === '√x') {
-            ans.value = Math.sqrt(ans.value);
+            ans.value = parseFloat(Math.sqrt(ans.value).toFixed(3));
         } else if (button === '÷') {
-            ans.value = ans.value / ans.value;
+            console.log('divide');
         } else if (button === 'x') {
-            ans.value = ans.value * ans.value;
+            console.log('multiply');
         } else if (button === '-') {
-            ans.value = ans.value - ans.value;
+            console.log('subtract');
         } else if (button === '+') {
-            ans.value = ans.value + ans.value;
+            console.log('add');
         } else if (button === '+/-') {
             ans.value = -ans.value;
         } else if (button === '=') {
             calculate();
         } else if (button === '. ') {
-            ans.value = ans.value + '.';
+            console.log('dot');
         }
     }
 };
@@ -70,7 +71,7 @@ const handleClick = (button: string | number) => {
                     font-mono
                 "
             >
-                {{ ans.toLocaleString('en-US', {maximumFractionDigits:3}) }}
+                {{ ans.toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
             </div>
             <div class="grid grid-cols-4 gap-4">
                 <button

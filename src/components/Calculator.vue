@@ -87,7 +87,6 @@ const operators: any = {
             my-auto
         "
     >
-        {{ans}}
         <h3 class="my-5">CALCULATOR</h3>
         <div class="w-3/5 bg-black p-6 mx-auto rounded-lg text-4xl">
             <div

@@ -10,13 +10,13 @@ export const useCalculator = defineStore('useCalculator', {
     actions: {
         calculate() {            
             if(this.operator === 'add') {
-                this.ans = this.num + this.ans;
+                this.ans = parseFloat((this.num + this.ans).toFixed(3));
             }
             else if(this.operator === 'subtract') {
-                this.ans = this.ans - this.num;
+                this.ans = parseFloat((this.ans - this.num).toFixed(3));
             }
             else if(this.operator === 'multiply') {
-                this.ans = this.ans * this.num;
+                this.ans = parseFloat((this.ans * this.num).toFixed(3));
             }
             else if(this.operator === 'divide') {
                 this.ans = parseFloat((this.ans / this.num).toFixed(3));
@@ -30,9 +30,9 @@ export const useCalculator = defineStore('useCalculator', {
                 return;
             }
             if(this.operator !== '') {
-                this.num = parseInt(((this.num || '').toString() + number).toString());
+                this.num = parseFloat(((this.num || '').toString() + number).toString());
             } else {
-                this.ans = parseInt(((this.ans || '').toString() + number).toString());
+                this.ans = parseFloat(((this.ans || '').toString() + number).toString());
             }
         },
     },

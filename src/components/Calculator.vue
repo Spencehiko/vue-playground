@@ -17,23 +17,38 @@ const handleClick = (button: string | number) => {
             num.value = 0;
             operator.value = '';
         } else if (button === 'π') {
-            ans.value = 3.142;
+            if (operator.value === '') {
+                ans.value = 3.142;
+            } else {
+                num.value = 3.142;
+            }
         } else if (button === '%') {
+            if (!(operator.value === '' && num.value === 0)) {
+                calculate();
+            }
             ans.value = parseFloat((ans.value / 100).toFixed(3));
         } else if (button === '⌫') {
-            if(operator.value === '') {
-                console.log(ans.value);
+            if (operator.value === '') {
                 ans.value = parseFloat(ans.value.toString().slice(0, -1));
-            } else if(num.value === 0) {
+            } else if (num.value === 0) {
                 operator.value = '';
             } else {
                 num.value = parseFloat(num.value.toString().slice(0, -1));
             }
         } else if (button === '1/x') {
+            if (!(operator.value === '' && num.value === 0)) {
+                calculate();
+            }
             ans.value = parseFloat((1 / ans.value).toFixed(3));
         } else if (button === 'x²') {
-            ans.value = ans.value * ans.value;
+            if (!(operator.value === '' && num.value === 0)) {
+                calculate();
+            }
+            ans.value = parseFloat((ans.value * ans.value).toFixed(3))
         } else if (button === '√x') {
+            if (!(operator.value === '' && num.value === 0)) {
+                calculate();
+            }
             ans.value = parseFloat(Math.sqrt(ans.value).toFixed(3));
         } else if (button === '÷') {
             operator.value = 'divide';
@@ -47,7 +62,7 @@ const handleClick = (button: string | number) => {
             ans.value = -ans.value;
         } else if (button === '=') {
             calculate();
-        } else if (button === '. ') {
+        } else if (button === '.') {
             operator.value = 'dot';
         }
     }
@@ -72,6 +87,7 @@ const operators: any = {
             my-auto
         "
     >
+        {{ans}}
         <h3 class="my-5">CALCULATOR</h3>
         <div class="w-3/5 bg-black p-6 mx-auto rounded-lg text-4xl">
             <div
@@ -87,7 +103,13 @@ const operators: any = {
             >
                 {{ ans.toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
                 {{ operators[operator] }}
-                {{ num !== 0 ? num.toLocaleString("en-US", { maximumFractionDigits: 3 }) : '' }}
+                {{
+                    num !== 0
+                        ? num.toLocaleString("en-US", {
+                              maximumFractionDigits: 3,
+                          })
+                        : ""
+                }}
             </div>
             <div class="grid grid-cols-4 gap-4">
                 <button

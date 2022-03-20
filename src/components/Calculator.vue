@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia'
 import { useCalculator } from '../stores/calculator'
 
 const store = useCalculator();
-const { ans } = storeToRefs(store);
+const { ans, operator, num } = storeToRefs(store);
 const { calculate, addToNumber } = store;
 const newTodo = ref('');
 const buttons = ['C', 'π', '%', '⌫', '1/x', 'x²', '√x', '÷', 7, 8, 9, 'x', 4, 5, 6, '-', 1, 2, 3, '+', '+/-', 0, '.', '='];
@@ -14,13 +14,21 @@ const handleClick = (button: string | number) => {
     } else {
         if (button === 'C') {
             ans.value = 0;
+            num.value = 0;
+            operator.value = '';
         } else if (button === 'π') {
             ans.value = 3.142;
         } else if (button === '%') {
             ans.value = parseFloat((ans.value / 100).toFixed(3));
         } else if (button === '⌫') {
-            console.log(ans.value.toString());
-            ans.value = parseFloat(ans.value.toString().slice(0, -1));
+            if(operator.value === '') {
+                console.log(ans.value);
+                ans.value = parseFloat(ans.value.toString().slice(0, -1));
+            } else if(num.value === 0) {
+                operator.value = '';
+            } else {
+                num.value = parseFloat(num.value.toString().slice(0, -1));
+            }
         } else if (button === '1/x') {
             ans.value = parseFloat((1 / ans.value).toFixed(3));
         } else if (button === 'x²') {
@@ -28,22 +36,28 @@ const handleClick = (button: string | number) => {
         } else if (button === '√x') {
             ans.value = parseFloat(Math.sqrt(ans.value).toFixed(3));
         } else if (button === '÷') {
-            console.log('divide');
+            operator.value = 'divide';
         } else if (button === 'x') {
-            console.log('multiply');
+            operator.value = 'multiply';
         } else if (button === '-') {
-            console.log('subtract');
+            operator.value = 'subtract';
         } else if (button === '+') {
-            console.log('add');
+            operator.value = 'add';
         } else if (button === '+/-') {
             ans.value = -ans.value;
         } else if (button === '=') {
             calculate();
         } else if (button === '. ') {
-            console.log('dot');
+            operator.value = 'dot';
         }
     }
 };
+const operators: any = {
+    'add': '+',
+    'subtract': '-',
+    'multiply': 'x',
+    'divide': '÷',
+}
 </script>
 
 <template>
@@ -72,6 +86,8 @@ const handleClick = (button: string | number) => {
                 "
             >
                 {{ ans.toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
+                {{ operators[operator] }}
+                {{ num !== 0 ? num.toLocaleString("en-US", { maximumFractionDigits: 3 }) : '' }}
             </div>
             <div class="grid grid-cols-4 gap-4">
                 <button

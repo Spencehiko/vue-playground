@@ -23,9 +23,7 @@ const handleClick = (button: string | number) => {
                 num.value = 3.142;
             }
         } else if (button === '%') {
-            if (!(operator.value === '' && num.value === 0)) {
-                calculate();
-            }
+            checkCalculate();
             ans.value = parseFloat((ans.value / 100).toFixed(3));
         } else if (button === '⌫') {
             if (operator.value === '') {
@@ -36,27 +34,25 @@ const handleClick = (button: string | number) => {
                 num.value = parseFloat(num.value.toString().slice(0, -1));
             }
         } else if (button === '1/x') {
-            if (!(operator.value === '' && num.value === 0)) {
-                calculate();
-            }
+            checkCalculate();
             ans.value = parseFloat((1 / ans.value).toFixed(3));
         } else if (button === 'x²') {
-            if (!(operator.value === '' && num.value === 0)) {
-                calculate();
-            }
+            checkCalculate();
             ans.value = parseFloat((ans.value * ans.value).toFixed(3))
         } else if (button === '√x') {
-            if (!(operator.value === '' && num.value === 0)) {
-                calculate();
-            }
+            checkCalculate();
             ans.value = parseFloat(Math.sqrt(ans.value).toFixed(3));
         } else if (button === '÷') {
+            checkCalculate();
             operator.value = 'divide';
         } else if (button === 'x') {
+            checkCalculate();
             operator.value = 'multiply';
         } else if (button === '-') {
+            checkCalculate();
             operator.value = 'subtract';
         } else if (button === '+') {
+            checkCalculate();
             operator.value = 'add';
         } else if (button === '+/-') {
             ans.value = -ans.value;
@@ -67,6 +63,11 @@ const handleClick = (button: string | number) => {
         }
     }
 };
+const checkCalculate = (): void => {
+    if (!(operator.value === '' && num.value === 0)) {
+        calculate();
+    }
+}
 const operators: any = {
     'add': '+',
     'subtract': '-',

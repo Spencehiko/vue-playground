@@ -31,7 +31,11 @@ const handleClick = (button: string | number) => {
             } else if (num.value === 0) {
                 operator.value = '';
             } else {
-                num.value = parseFloat(num.value.toString().slice(0, -1));
+                if(num.value.toString().length === 1) {
+                    num.value = 0;
+                } else {
+                    num.value = parseFloat(num.value.toString().slice(0, -1));
+                }
             }
         } else if (button === '1/x') {
             checkCalculate();
@@ -59,12 +63,12 @@ const handleClick = (button: string | number) => {
         } else if (button === '=') {
             calculate();
         } else if (button === '.') {
-            operator.value = 'dot';
+            // operator.value = 'dot';
         }
     }
 };
 const checkCalculate = (): void => {
-    if (!(operator.value === '' && num.value === 0)) {
+    if (!(operator.value === '' || num.value === 0)) {
         calculate();
     }
 }

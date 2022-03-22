@@ -59,7 +59,11 @@ const handleClick = (button: string | number) => {
             checkCalculate();
             operator.value = 'add';
         } else if (button === '+/-') {
-            ans.value = -ans.value;
+            if (num.value === 0) {
+                ans.value = -ans.value;
+            } else {
+                num.value = -num.value;
+            }
         } else if (button === '=') {
             calculate();
         } else if (button === '.') {
